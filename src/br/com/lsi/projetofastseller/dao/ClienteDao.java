@@ -6,54 +6,26 @@
 
 package br.com.lsi.projetofastseller.dao;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.lsi.projetofastseller.model.Cliente;
+import br.com.lsi.projetofastseller.util.DaoException;
+import java.util.List;
 
 /**
  *
  * @author jacsoncavalcante
  */
-@Entity
-public class ClienteDao implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public interface ClienteDao {
+     public void inserir(Cliente c) throws DaoException;
 
-    public Long getId() {
-        return id;
-    }
+    public void editar(Cliente c) throws DaoException;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void remover(int id) throws DaoException;
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+    public List<Cliente> listarCliente() throws DaoException;
+   
+    public List<Cliente> listarClientesPorNome(String nome) throws DaoException;
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ClienteDao)) {
-            return false;
-        }
-        ClienteDao other = (ClienteDao) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+    public Cliente getPorId(int id) throws DaoException;
 
-    @Override
-    public String toString() {
-        return "br.com.lsi.projetofastseller.dao.ClienteDao[ id=" + id + " ]";
-    }
     
 }
